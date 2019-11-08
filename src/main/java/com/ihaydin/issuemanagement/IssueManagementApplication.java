@@ -1,9 +1,12 @@
 package com.ihaydin.issuemanagement;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
+import org.modelmapper.spi.MatchingStrategy;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.ui.Model;
 
 @SpringBootApplication
 public class IssueManagementApplication {
@@ -14,7 +17,9 @@ public class IssueManagementApplication {
 
     @Bean
     public ModelMapper getModelMapper(){
-        return new ModelMapper();
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        return modelMapper;
     }
 
 }
